@@ -352,7 +352,7 @@
                     </td>
                     <td>
                         @if($submission['file_path'])
-                        <a href="{{ asset($submission['file_path']) }}" target="_blank" class="file-link">
+                        <a href="{{ route('admin.downloadSubmission', ['file_path' => $submission['file_path']]) }}" target="_blank" class="file-link">
                             📎 Xem file
                         </a>
                         @else

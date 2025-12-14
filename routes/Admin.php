@@ -4,13 +4,21 @@ use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Admin\ProjectController;
-use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Admin\AssignmentController;
+use App\Http\Controllers\Admin\PostController;
 
 // màn hình dashboard admin
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('check.admin');
 // đổi mật khẩu
 Route::post('/changePassword', [AdminController::class, 'changePassword'])->name('admin.changePassword')->middleware('check.admin');
+// danh sách tài khoản người dùng
+Route::get('/userList', [AdminController::class, 'userList'])->name('admin.userList')->middleware('check.admin');
+// cập nhật thông tin người dùng
+Route::post('/updateUser', [AdminController::class, 'updateUser'])->name('admin.updateUser')->middleware('check.admin');
+// xóa tài khoản người dùng
+Route::post('/deleteUser', [AdminController::class, 'deleteUser'])->name('admin.deleteUser')->middleware('check.admin');
+// khóa/mở khóa tài khoản
+Route::post('/toggleUserLock', [AdminController::class, 'toggleUserLock'])->name('admin.toggleUserLock')->middleware('check.admin');
 
 // view thêm dự án
 Route::get('/createProject', [ProjectController::class, 'createProject'])->name('admin.createProject')->middleware('check.admin');
@@ -54,8 +62,10 @@ Route::post('/updateAssignment', [AssignmentController::class, 'updateAssignment
 Route::post('/deleteAssignment', [AssignmentController::class, 'deleteAssignment'])->name('admin.deleteAssignment')->middleware('check.admin');
 // xem chi tiết bài tập và danh sách nộp bài
 Route::get('/assignmentDetail/{assignment_id}', [AssignmentController::class, 'assignmentDetail'])->name('admin.assignmentDetail')->middleware('check.admin');
-
-
+// dowload bài tập của sinh viên về
+Route::get('/downloadSubmission/{file_path}', [AssignmentController::class, 'downloadSubmission'])->name('admin.downloadSubmission')->where('file_path', '.*')->middleware('check.admin');
+// quản lý tài khoản client
+Route::get('userList', [AdminController::class, 'userList'])->name('admin.userList')->middleware('check.admin');
 
 
 

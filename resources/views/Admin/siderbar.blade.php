@@ -3,6 +3,6 @@
 
     <a href="{{ route('admin.dashboard') }}"> Dashboard</a>
 
-    <a href="">Quản lý tài khoản</a>
+    <a href="{{ route('admin.userList') }}">Quản lý tài khoản</a>
 
 </div>

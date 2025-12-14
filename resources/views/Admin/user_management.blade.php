@@ -506,4 +506,15 @@
             closeEditModal();
         }
     }
-</script>
+    // Tự động ẩn thông báo sau 3 giây
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert-success');
+        alerts.forEach(function(alert) {
+            setTimeout(function() {
+                alert.classList.add('fade-out');
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 500);
+            }, 3000);
+        });
+    });</script>
